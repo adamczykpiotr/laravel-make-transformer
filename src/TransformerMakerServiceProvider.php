@@ -1,20 +1,16 @@
 <?php
 
-namespace MetricLoop\TransformerMaker;
+namespace AdamczykPiotr\MakeTransformer;
 
 use Illuminate\Support\ServiceProvider;
-use MetricLoop\TransformerMaker\Commands\MakeTransformer;
-use Symfony\Component\Console\Output\ConsoleOutput;
+use AdamczykPiotr\MakeTransformer\Commands\MakeTransformer;
 
 class TransformerMakerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
-    public function boot()
-    {
-        //
-    }
+    public function boot() {}
 
     /**
      * Register the application services.
@@ -23,10 +19,6 @@ class TransformerMakerServiceProvider extends ServiceProvider
     {
         $this->app->bind('command.make:transformer', MakeTransformer::class);
 
-        $this->commands([
-            'command.make:transformer',
-        ]);
-
-        // $this->app->singleton(ConsoleOutput::class);
+        $this->commands(['command.make:transformer']);
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace MetricLoop\TransformerMaker\Commands;
+namespace AdamczykPiotr\MakeTransformer\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class MakeTransformer extends GeneratorCommand
 {
@@ -45,7 +47,7 @@ class MakeTransformer extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Transformers';
+        return "$rootNamespace\Transformers";
     }
 
     /**
@@ -57,19 +59,29 @@ class MakeTransformer extends GeneratorCommand
      */
     protected function replaceClass($stub, $name)
     {
-        $stub = parent::replaceClass($stub, $name);
+        //extract Class from ClassTransformer
+        $className = Str::before($this->getNameInput(), 'Transformer');
+        $variableName = Str::lower($className);
+        $tableName = Str::plural($variableName);
 
-        return str_replace('$dummy', '$' . strtolower($this->getNameInput()), $stub);
-    }
+        $stub = parent::replaceClass($stub, $className);
+        $stub = str_replace('Dummy', $className, $stub);
+        $stub = str_replace('$dummy', "$$variableName", $stub);
 
-    /**
-     * Append "Transformer" to name input.
-     *
-     * @param string $name
-     * @return string
-     */
-    protected function getPath($name)
-    {
-        return parent::getPath($name . 'Transformer');
+        //If table exists => obtain all fields & create array content
+        if( Schema::hasTable($tableName) ) {
+
+            $values = '';
+            foreach( Schema::getColumnListing($tableName) as $index => $column) {
+                if($index > 0) $values .= "\t\t\t";
+                $values .= "$$variableName->$column => $$variableName->$column,\n";
+            }
+
+            //remove ,\n from output
+            $values = substr($values, 0, -2);
+            $stub = str_replace('//Model fields here', $values, $stub);
+        }
+
+        return $stub;
     }
 }

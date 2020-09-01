@@ -1,39 +1,20 @@
 <?php
 
-namespace DummyNamespace;
-
-use DummyRootNamespaceDummyClass;
+use App\Dummy;
 use League\Fractal\TransformerAbstract;
 
-class DummyClassTransformer extends TransformerAbstract
+class DummyTransformer extends TransformerAbstract
 {
     /**
-     * Related models to include in this transformation.
+     * Turn Dummy object into custom array.
      *
-     * @var array
-     */
-    protected $availableIncludes = [
-        //
-    ];
-
-    /**
-     * Turn this item object into a generic array.
-     *
-     * @param DummyClass $dummy
+     * @param Dummy $dummy
      * @return array
      */
-    public function transform(DummyClass $dummy)
+    public function transform(Dummy $dummy)
     {
         return [
-            // attributes
-
-            // links
-            'links' => [
-                [
-                    'rel' => 'self',
-                    'href' => url('path/to/resource'),
-                ],
-            ]
+            //Model fields here
         ];
     }
 }

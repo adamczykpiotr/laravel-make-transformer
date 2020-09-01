@@ -1,15 +1,31 @@
 {
-  "name": "metricloop/laravel-transformer-maker",
-  "description": "A Laravel 5 package to create Fractal Transformers",
+  "name": "adamczykpiotr/laravel-make-transformer",
+  "description": "Laravel 7.x package to add artisan method `make:transformer ClassTransformer`",
   "keywords": [
-    "metricloop",
+    "adamczykpiotr",
+	  "make-transformer",
+    "laravel",
+    "laravel-7",
+    "laravel-8",
+    "laravel-framework",
     "fractal",
     "transformer",
-    "api"
+    "artisan",
+    "api",
+	  "metricloop"
   ],
-  "homepage": "https://github.com/metricloop/laravel-transformer-maker",
+  "homepage": "https://github.com/adamczykpiotr/laravel-make-transformer",
   "license": "MIT",
+  "replace": {
+    "metricloop/laravel-transformer-maker":"1.*"
+  },
   "authors": [
+    {
+      "name": "Piotr Adamczyk",
+      "email": "kontakt@adamczykpiotr.com",
+      "homepage": "https://adamczykpiotr.com",
+      "role": "Developer"
+    },
     {
       "name": "Patrick Guevara",
       "email": "pguevara@metricloop.com",
@@ -18,25 +34,12 @@
     }
   ],
   "require": {
-    "php": "^7.0",
-    "illuminate/console": "5.5.* || 5.6.* || 5.7.*",
-    "illuminate/support": "5.5.* || 5.6.* || 5.7.*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~6.0"
+    "php": "^7.0"
   },
   "autoload": {
     "psr-4": {
-      "MetricLoop\\TransformerMaker\\": "src"
+      "AdamczykPiotr\\MakeTransformer\\": "src"
     }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "MetricLoop\\TransformerMaker\\Test\\": "tests"
-    }
-  },
-  "scripts": {
-    "test": "vendor/bin/phpunit"
   },
   "config": {
     "sort-packages": true
@@ -44,7 +47,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "MetricLoop\\TransformerMaker\\TransformerMakerServiceProvider"
+        "AdamczykPiotr\\MakeTransformer\\MakeTransformerServiceProvider"
       ]
     }
   }

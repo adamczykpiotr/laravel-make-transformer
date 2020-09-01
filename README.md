@@ -4,9 +4,9 @@ This very package makes generating [transformers](https://fractal.thephpleague.c
 
 
 ## Key features
-- [x] Laravel 5.x / 6.x / 7.x support
-- [x] Automatic provider discovery
-- [x] Transformer array based on model fields
+✔️ Laravel 5.x / 6.x / 7.x support\
+✔️ Automatic provider discovery\
+✔️ Transformer array based on model fields
 
 
 ## Installation

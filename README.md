@@ -1,4 +1,4 @@
-# Most convenient way of creating Fractals
+# Most convenient way of creating Transformers
 
 This very package makes generating [transformers](https://fractal.thephpleague.com/transformers/) using [fractal](https://github.com/spatie/laravel-fractal) in the fastest possible way.
 
